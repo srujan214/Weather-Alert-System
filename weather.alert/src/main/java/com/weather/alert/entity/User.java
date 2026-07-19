@@ -37,12 +37,15 @@ public class User { //used public so other classes can access this
     private Boolean isActive = true;
 
     @Column(nullable = false, updatable = false)//not nullable always has value .not updatable its set once
-    private LocalDateTime createdAt = LocalDateTime.now();//sets the creation time to the current moment when the object is created
+    private LocalDateTime createdAt = LocalDateTime.now();//sets the creation time to the current moment when the
+                                                         // object is created
 
     @Column
     private LocalDateTime lastLoginAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)//define one to many relationship
-    private List<Subscription> subscriptions = new ArrayList<>();
+    private List<Subscription> subscriptions = new ArrayList<>();//create a list to hold all subcription tothis user
 
+
+    //JPA read this code like @entity than must create table than hibernate convert into SQL table
 }
