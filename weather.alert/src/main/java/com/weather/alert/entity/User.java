@@ -46,6 +46,13 @@ public class User { //used public so other classes can access this
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)//define one to many relationship
     private List<Subscription> subscriptions = new ArrayList<>();//create a list to hold all subcription tothis user
 
+    public void addSubscription(Subscription subscription) {//it add subscription to the user
+        subscriptions.add(subscription);//add to list
+        subscription.setUser(this);//set the user reference in subscription
+    }
 
-    //JPA read this code like @entity than must create table than hibernate convert into SQL table
+    public void removeSubscription(Subscription subscription) {
+        subscriptions.remove(subscription);//remove from list
+        subscription.setUser(null);//remove the user reference
+    }//JPA read this code like @entity than must create table than hibernate convert into SQL table
 }
